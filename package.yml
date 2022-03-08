@@ -1,6 +1,6 @@
 name       : libgit2solbuild
 version    : 0.28.5
-release    : 1
+release    : 2
 source     :
     - https://github.com/libgit2/libgit2/releases/download/v0.28.5/libgit2-0.28.5.tar.gz : 2b7b68aee6f123bc84cc502a9c12738435b8054e7d628962e091cd2a25be4f42
 license    : GPL-2.0-or-later
@@ -18,4 +18,4 @@ build      : |
     %ninja_build
 install    : |
     %ninja_install
-    sed -i 's/lgit2/lgit2solbuild/g' $installdir/usr/lib/pkgconfig/libgit2.pc
+    rm $installdir/usr/lib/pkgconfig/libgit2.pc
