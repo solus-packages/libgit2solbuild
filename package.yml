@@ -1,0 +1,21 @@
+name       : libgit2solbuild
+version    : 0.28.5
+release    : 1
+source     :
+    - https://github.com/libgit2/libgit2/releases/download/v0.28.5/libgit2-0.28.5.tar.gz : 2b7b68aee6f123bc84cc502a9c12738435b8054e7d628962e091cd2a25be4f42
+license    : GPL-2.0-or-later
+component  : programming.library
+summary    : Temporary package to solve chicken and egg problem for libgit2 rebuilds. DO NOT LINK AGAINST THIS PACKAGE.
+description: |
+    Temporary package to solve chicken and egg problem for libgit2 rebuilds. DO NOT LINK AGAINST THIS PACKAGE.
+builddeps  :
+    - pkgconfig(libcurl)
+    - pkgconfig(libssh2)
+    - pkgconfig(openssl)
+setup      : |
+    %cmake_ninja -DLIBGIT2_FILENAME=git2solbuild
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install
+    sed -i 's/lgit2/lgit2solbuild/g' $installdir/usr/lib/pkgconfig/libgit2.pc
